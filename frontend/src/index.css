@@ -1,0 +1,366 @@
+/* ============================================================
+   GLOBAL RESET & BASE
+   ============================================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #0a0e1a;
+  color: #fff;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+::-webkit-scrollbar-thumb {
+  background: #4a7aff;
+  border-radius: 10px;
+}
+
+a {
+  color: #4a7aff;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+}
+
+/* ============================================================
+   GAME CARD HOVER EFFECTS
+   ============================================================ */
+.game-card,
+.memory-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.game-card:hover,
+.memory-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 30px rgba(74, 122, 255, 0.2);
+}
+
+/* ============================================================
+   DANCING CARTOON ANIMATION (Victory Screens)
+   ============================================================ */
+@keyframes dance {
+  0% { transform: rotate(0deg) scale(1); }
+  25% { transform: rotate(-15deg) scale(1.1); }
+  50% { transform: rotate(15deg) scale(0.9); }
+  75% { transform: rotate(-5deg) scale(1.05); }
+  100% { transform: rotate(0deg) scale(1); }
+}
+.dancing-cartoon {
+  display: inline-block;
+  animation: dance 0.8s infinite ease-in-out;
+  font-size: 80px;
+}
+
+/* ============================================================
+   2048 PLUS – BOARD & TILES
+   ============================================================ */
+.board {
+  background: rgba(26, 26, 58, 0.95);
+  padding: 12px;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+  max-width: 500px;
+  margin: 0 auto;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.tile {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  font-weight: 700;
+  transition: all 0.08s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  user-select: none;
+}
+
+.tile-empty {
+  aspect-ratio: 1;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+.hud {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.hud-item {
+  background: rgba(255, 255, 255, 0.04);
+  padding: 10px 6px;
+  border-radius: 12px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+.hud-item span {
+  display: block;
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.35);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.hud-item strong {
+  font-size: 20px;
+  color: #fff;
+  font-weight: 700;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #4a7aff, #7a4aff);
+  color: #fff;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 15px rgba(74, 122, 255, 0.25);
+}
+.btn-primary:hover {
+  transform: scale(1.04);
+  box-shadow: 0 6px 25px rgba(74, 122, 255, 0.4);
+}
+.btn-primary:active {
+  transform: scale(0.97);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 10px 24px;
+  border-radius: 12px;
+  font-weight: 500;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: scale(1.02);
+}
+.btn-secondary:active {
+  transform: scale(0.98);
+}
+.btn-secondary:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ----- MODALS (2048) ----- */
+.milestone-overlay,
+.gameover-overlay,
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  backdrop-filter: blur(6px);
+  animation: fadeIn 0.25s ease;
+}
+
+.milestone-modal,
+.gameover-modal,
+.modal-content {
+  background: rgba(26, 26, 58, 0.96);
+  padding: 32px 28px;
+  border-radius: 24px;
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 215, 0, 0.08);
+  animation: scaleIn 0.3s ease;
+}
+
+.milestone-modal h2 {
+  font-size: 32px;
+  color: #ffd700;
+  margin: 8px 0 4px;
+}
+.milestone-modal p {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 18px;
+}
+
+.gameover-modal h2 {
+  font-size: 32px;
+  color: #ff6b6b;
+  margin-bottom: 4px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 16px 0;
+}
+.stats-grid div {
+  background: rgba(255, 255, 255, 0.04);
+  padding: 8px 6px;
+  border-radius: 10px;
+}
+.stats-grid span {
+  display: block;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.35);
+  text-transform: uppercase;
+}
+.stats-grid strong {
+  font-size: 18px;
+  color: #fff;
+  font-weight: 700;
+}
+
+.achievement-popup {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.88);
+  backdrop-filter: blur(10px);
+  padding: 14px 24px;
+  border-radius: 16px;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border: 1px solid rgba(255, 215, 0, 0.2);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+  animation: slideUp 0.4s ease-out;
+}
+.achievement-popup .achievement-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.achievement-popup .achievement-content h3 {
+  font-size: 16px;
+  color: #ffd700;
+  margin: 0;
+}
+.achievement-popup .achievement-content p {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+}
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+/* ============================================================
+   RESPONSIVE TWEAKS
+   ============================================================ */
+@media (max-width: 600px) {
+  .hud {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+  .hud-item strong {
+    font-size: 17px;
+  }
+  .board {
+    padding: 8px;
+    gap: 6px;
+  }
+  .tile {
+    font-size: 20px !important;
+    border-radius: 6px;
+  }
+  .btn-primary,
+  .btn-secondary {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+  .milestone-modal,
+  .gameover-modal,
+  .modal-content {
+    padding: 24px 18px;
+  }
+  .milestone-modal h2 {
+    font-size: 26px;
+  }
+  .gameover-modal h2 {
+    font-size: 26px;
+  }
+  .stats-grid strong {
+    font-size: 16px;
+  }
+  .achievement-popup {
+    padding: 12px 18px;
+    bottom: 20px;
+    width: 90%;
+  }
+  .achievement-popup .achievement-content h3 {
+    font-size: 14px;
+  }
+  .dancing-cartoon {
+    font-size: 50px;
+  }
+}
+
+@media (max-width: 400px) {
+  .board {
+    padding: 6px;
+  }
+  .tile {
+    border-radius: 4px;
+    font-size: 16px !important;
+  }
+  .hud-item strong {
+    font-size: 14px;
+  }
+  .hud-item span {
+    font-size: 9px;
+  }
+}
+
+/* ============================================================
+   COZY CAKE FACTORY STYLES (Import)
+   ============================================================ */
+@import './pages/CozyCakeFactory.css';

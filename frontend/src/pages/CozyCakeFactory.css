@@ -1,0 +1,658 @@
+/* ============================================================
+   COZY CAKE FACTORY – Complete Styles
+   ============================================================ */
+
+/* ----- START SCREEN ----- */
+.cozy-factory-start {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #fce4ec, #f3e5f5, #e8f5e9);
+  padding: 20px;
+  border-radius: 24px;
+}
+.start-content {
+  text-align: center;
+  background: rgba(255,255,255,0.85);
+  padding: 48px 40px;
+  border-radius: 32px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+  max-width: 500px;
+  width: 100%;
+}
+.start-content h1 {
+  font-size: 42px;
+  color: #e91e63;
+  margin-bottom: 8px;
+}
+.start-content p {
+  color: #666;
+  font-size: 18px;
+  margin-bottom: 24px;
+}
+.start-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ----- MAIN GAME LAYOUT ----- */
+.cozy-factory-game {
+  background: linear-gradient(180deg, #fce4ec 0%, #f8f0ff 100%);
+  min-height: 80vh;
+  border-radius: 24px;
+  padding: 16px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ----- HEADER ----- */
+.factory-header {
+  background: rgba(255,255,255,0.9);
+  border-radius: 16px;
+  padding: 12px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+}
+.factory-header h1 {
+  font-size: 24px;
+  color: #e91e63;
+  margin: 0;
+}
+.header-stats {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.header-stats .stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(0,0,0,0.03);
+  padding: 4px 12px;
+  border-radius: 8px;
+}
+.header-stats .stat span {
+  font-size: 10px;
+  color: #999;
+  text-transform: uppercase;
+}
+.header-stats .stat strong {
+  font-size: 16px;
+  color: #333;
+}
+.header-stats .stat strong.timer-warning {
+  color: #ff6b6b;
+  animation: pulse 0.5s ease-in-out infinite;
+}
+
+/* ----- MAIN GRID ----- */
+.factory-main {
+  display: grid;
+  grid-template-columns: 280px 1fr 220px;
+  gap: 16px;
+  margin-top: 16px;
+  min-height: 500px;
+}
+
+/* ----- LEFT: ORDER PANEL ----- */
+.factory-left {
+  background: rgba(255,255,255,0.9);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+}
+.order-panel h3 {
+  color: #e91e63;
+  margin-bottom: 12px;
+  font-size: 16px;
+  border-bottom: 2px solid #fce4ec;
+  padding-bottom: 8px;
+}
+.order-details {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.order-preview {
+  display: flex;
+  justify-content: center;
+  padding: 8px;
+  background: #f8f0ff;
+  border-radius: 12px;
+}
+.order-specs {
+  font-size: 13px;
+}
+.order-specs div {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+.order-specs span {
+  color: #888;
+}
+.order-specs div:last-child {
+  border-bottom: none;
+}
+
+/* ----- CENTER: CONVEYOR ----- */
+.factory-center {
+  background: rgba(255,255,255,0.9);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+}
+.conveyor-stations {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 3px solid #fce4ec;
+  margin-bottom: 16px;
+}
+.station {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 12px;
+  color: #bbb;
+  transition: all 0.3s;
+  padding: 4px 8px;
+  border-radius: 8px;
+}
+.station.active {
+  color: #e91e63;
+  background: #fce4ec;
+  transform: scale(1.05);
+}
+.station span {
+  font-size: 22px;
+}
+.station small {
+  font-size: 10px;
+}
+.cake-display {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+.cake-building {
+  min-height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.station-controls {
+  width: 100%;
+  max-width: 500px;
+}
+.controls-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+.controls-grid button {
+  padding: 8px 16px;
+  border: 2px solid #f0f0f0;
+  border-radius: 12px;
+  background: #fff;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 13px;
+  color: #333;
+}
+.controls-grid button:hover {
+  border-color: #e91e63;
+  background: #fce4ec;
+}
+.controls-grid button.active {
+  border-color: #e91e63;
+  background: #e91e63;
+  color: #fff;
+}
+.controls-grid .btn-next {
+  background: #e91e63;
+  color: #fff;
+  border-color: #e91e63;
+}
+.controls-grid .btn-next:hover {
+  background: #c2185b;
+}
+.controls-grid .btn-deliver {
+  background: #4caf50;
+  color: #fff;
+  border-color: #4caf50;
+  padding: 12px 32px;
+  font-size: 18px;
+}
+.controls-grid .btn-deliver:hover {
+  background: #388e3c;
+}
+
+/* Layer controls */
+.layer-controls {
+  width: 100%;
+}
+.layer-display {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  padding: 8px;
+  min-height: 40px;
+  flex-wrap: wrap;
+}
+.layer-pill {
+  padding: 4px 12px;
+  border-radius: 20px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+.layer-pill.empty {
+  background: #eee;
+  color: #ccc;
+  text-shadow: none;
+}
+.layer-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+}
+.layer-buttons .layer-add {
+  padding: 4px 12px;
+  border: 1px solid #ddd;
+  border-radius: 16px;
+  background: #fff;
+  cursor: pointer;
+  font-size: 12px;
+}
+.layer-buttons .layer-add:hover {
+  background: #f5f5f5;
+}
+.btn-remove {
+  padding: 4px 12px;
+  border: 1px solid #ff6b6b;
+  border-radius: 16px;
+  background: #fff;
+  color: #ff6b6b;
+  cursor: pointer;
+  font-size: 12px;
+}
+.btn-remove:hover {
+  background: #ff6b6b;
+  color: #fff;
+}
+
+/* ----- RIGHT: PREVIEW ----- */
+.factory-right {
+  background: rgba(255,255,255,0.9);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+}
+.preview-panel h3 {
+  color: #e91e63;
+  margin-bottom: 12px;
+  font-size: 16px;
+  border-bottom: 2px solid #fce4ec;
+  padding-bottom: 8px;
+}
+.preview-cake {
+  display: flex;
+  justify-content: center;
+  padding: 12px;
+  background: #f8f0ff;
+  border-radius: 12px;
+  min-height: 160px;
+  align-items: center;
+}
+.preview-details {
+  font-size: 12px;
+  margin-top: 12px;
+}
+.preview-details div {
+  display: flex;
+  justify-content: space-between;
+  padding: 3px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+.preview-details span {
+  color: #888;
+}
+.preview-details div:last-child {
+  border-bottom: none;
+}
+
+/* ----- CAKE VISUAL ----- */
+.cake-visual {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.cake-base {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.cake-layer {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.cake-frosting {
+  position: absolute;
+  width: 90%;
+  height: 25%;
+  bottom: 60%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.cake-decoration {
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.cake-sprinkles {
+  position: absolute;
+  width: 80%;
+  height: 15%;
+  bottom: 70%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  opacity: 0.6;
+  background: repeating-linear-gradient(
+    45deg,
+    #ff8a9a 0px, #ff8a9a 4px,
+    #ffd93d 4px, #ffd93d 8px,
+    #6bcbff 8px, #6bcbff 12px
+  );
+}
+
+/* ----- CAKE SHAPES ----- */
+.cake-round .cake-base,
+.cake-round .cake-layer,
+.cake-round .cake-frosting {
+  border-radius: 50%;
+}
+.cake-square .cake-base,
+.cake-square .cake-layer,
+.cake-square .cake-frosting {
+  border-radius: 12px;
+}
+.cake-heart .cake-base,
+.cake-heart .cake-layer,
+.cake-heart .cake-frosting {
+  border-radius: 50% 50% 0 0;
+  clip-path: path('M50,30 A20,20 0 0,1 90,30 A20,20 0 0,1 50,80 A20,20 0 0,1 10,30 A20,20 0 0,1 50,30 Z');
+}
+.cake-star .cake-base,
+.cake-star .cake-layer,
+.cake-star .cake-frosting {
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  border-radius: 0;
+}
+.cake-flower .cake-base,
+.cake-flower .cake-layer,
+.cake-flower .cake-frosting {
+  border-radius: 50%;
+  clip-path: path('M50,10 A20,20 0 0,1 90,50 A20,20 0 0,1 50,90 A20,20 0 0,1 10,50 A20,20 0 0,1 50,10 Z');
+}
+.cake-diamond .cake-base,
+.cake-diamond .cake-layer,
+.cake-diamond .cake-frosting {
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  border-radius: 0;
+}
+
+/* ----- RESULT MODAL ----- */
+.result-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  backdrop-filter: blur(4px);
+}
+.result-modal {
+  background: #fff;
+  padding: 32px;
+  border-radius: 24px;
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
+  animation: scaleIn 0.3s ease;
+}
+.result-modal.perfect {
+  border: 3px solid #ffd700;
+}
+.result-modal.incorrect {
+  border: 3px solid #ff6b6b;
+}
+.result-icon {
+  font-size: 48px;
+}
+.result-modal h2 {
+  margin: 8px 0 4px;
+}
+.result-detail {
+  color: #666;
+  font-size: 14px;
+  margin: 2px 0;
+}
+
+/* ----- MODAL OVERLAY ----- */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  backdrop-filter: blur(6px);
+}
+.modal-content {
+  background: #fff;
+  padding: 32px;
+  border-radius: 24px;
+  max-width: 460px;
+  width: 90%;
+  text-align: center;
+  animation: scaleIn 0.3s ease;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+.modal-content h2 {
+  font-size: 28px;
+  color: #e91e63;
+}
+.modal-content .stars {
+  font-size: 40px;
+  margin: 8px 0;
+}
+.modal-content .stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin: 16px 0;
+}
+.modal-content .stats div {
+  background: #f8f0ff;
+  padding: 8px;
+  border-radius: 10px;
+}
+.modal-content .stats span {
+  display: block;
+  font-size: 11px;
+  color: #999;
+}
+.modal-content .stats strong {
+  font-size: 18px;
+  color: #333;
+}
+.modal-content .ending-line {
+  font-style: italic;
+  color: #888;
+  margin: 12px 0;
+}
+.modal-content.gameover h2 {
+  color: #ff6b6b;
+}
+.modal-content.victory {
+  background: linear-gradient(135deg, #fff8e1, #fce4ec);
+}
+.modal-content.victory h2 {
+  color: #ffd700;
+}
+
+/* ----- BUTTONS ----- */
+.btn-bake {
+  background: linear-gradient(135deg, #e91e63, #c2185b);
+  color: #fff;
+  border: none;
+  padding: 14px 32px;
+  border-radius: 14px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.btn-bake:hover {
+  transform: scale(1.04);
+  box-shadow: 0 8px 24px rgba(233, 30, 99, 0.3);
+}
+.btn-bake-secondary {
+  background: #f5f5f5;
+  color: #666;
+  border: 2px solid #eee;
+  padding: 12px 28px;
+  border-radius: 14px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.btn-bake-secondary:hover {
+  background: #eee;
+}
+
+/* ----- ACHIEVEMENT TOAST ----- */
+.achievement-toast {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(8px);
+  padding: 14px 28px;
+  border-radius: 16px;
+  color: #fff;
+  font-size: 16px;
+  z-index: 300;
+  animation: slideUp 0.4s ease-out;
+  border: 1px solid #ffd700;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+}
+.achievement-toast span {
+  font-size: 24px;
+  margin-right: 8px;
+}
+
+/* ----- ANIMATIONS ----- */
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.05); }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+/* ----- RESPONSIVE ----- */
+@media (max-width: 1024px) {
+  .factory-main {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .factory-left,
+  .factory-right {
+    display: none;
+  }
+  .factory-center {
+    min-height: 500px;
+  }
+  .header-stats {
+    gap: 8px;
+  }
+  .header-stats .stat strong {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 600px) {
+  .factory-header {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+  .header-stats {
+    justify-content: center;
+  }
+  .header-stats .stat {
+    padding: 2px 8px;
+  }
+  .header-stats .stat strong {
+    font-size: 12px;
+  }
+  .controls-grid button {
+    font-size: 11px;
+    padding: 6px 12px;
+  }
+  .cake-building {
+    min-height: 140px;
+  }
+  .conveyor-stations .station small {
+    display: none;
+  }
+  .conveyor-stations .station span {
+    font-size: 18px;
+  }
+  .modal-content {
+    padding: 20px;
+  }
+  .modal-content h2 {
+    font-size: 22px;
+  }
+  .btn-bake {
+    font-size: 15px;
+    padding: 10px 20px;
+  }
+}
